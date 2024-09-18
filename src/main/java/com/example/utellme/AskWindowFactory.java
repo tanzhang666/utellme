@@ -35,11 +35,13 @@ public class AskWindowFactory implements ToolWindowFactory {
 
         // 问题输入区
         JPanel inputPanel = new JPanel();
-        inputPanel.setLayout(new BorderLayout(5, 5));
+        inputPanel.setLayout(new BorderLayout(10, 10));
 
-        questionTextArea = new JTextArea(3, 50); // 输入区域设置为3行
+        questionTextArea = new JTextArea(5, 50); // 输入区域设置为3行
         questionTextArea.setLineWrap(true);
         questionTextArea.setWrapStyleWord(true);
+        // 设置输入框的字体，使用 "JetBrains Mono" 字体，大小为 14
+        questionTextArea.setFont(new Font("JetBrains Mono", Font.PLAIN, 14));
         JBScrollPane questionScrollPane = new JBScrollPane(questionTextArea);
         inputPanel.add(new JLabel("输入问题:"), BorderLayout.NORTH);
         inputPanel.add(questionScrollPane, BorderLayout.CENTER);
@@ -56,10 +58,12 @@ public class AskWindowFactory implements ToolWindowFactory {
         resultTextArea.setEditable(false);  // 结果区不可编辑
         resultTextArea.setLineWrap(true);
         resultTextArea.setWrapStyleWord(true);
+        // 设置输出框的字体，使用 "JetBrains Mono" 字体，大小为 14
+        resultTextArea.setFont(new Font("JetBrains Mono", Font.PLAIN, 14));
         JBScrollPane resultScrollPane = new JBScrollPane(resultTextArea);
 
         JPanel outputPanel = new JPanel();
-        outputPanel.setLayout(new BorderLayout(5, 5));
+        outputPanel.setLayout(new BorderLayout(10, 10));
         outputPanel.add(new JLabel("输出结果:"), BorderLayout.NORTH);
         outputPanel.add(resultScrollPane, BorderLayout.CENTER);
 
@@ -75,7 +79,6 @@ public class AskWindowFactory implements ToolWindowFactory {
                 try {
                     // 调用 Ollama 服务
                     String formatComment = codeUtil.formatComment(question);
-                    System.out.println(formatComment);
                     String prompt = formatComment;
                     String result = ollamaUtil.callOllamaService("glm4", prompt);
 

@@ -22,7 +22,7 @@ public class OllamaUtil {
 
         // 构建 HTTP 请求，目标为本地服务
         Request request = new Request.Builder()
-                .url("localhost:11434/api/generate")  // Ollama 本地服务接口
+                .url("http://localhost:11434/api/generate")  // Ollama 本地服务接口
                 .post(body)
                 .build();
 

@@ -8,6 +8,7 @@ import com.intellij.ui.content.Content;
 import com.intellij.ui.content.ContentFactory;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class ResultToolWindowFactory implements ToolWindowFactory {
 
@@ -23,6 +24,9 @@ public class ResultToolWindowFactory implements ToolWindowFactory {
         resultTextArea = new JTextArea();
         resultTextArea.setEditable(true);
         resultTextArea.setLineWrap(true);
+        resultTextArea.setWrapStyleWord(true);
+        // 设置输出框的字体，使用 "JetBrains Mono" 字体，大小为 14
+        resultTextArea.setFont(new Font("JetBrains Mono", Font.PLAIN, 14));
         JBScrollPane scrollPane = new JBScrollPane(resultTextArea);
 
         // 将滚动面板添加到主面板

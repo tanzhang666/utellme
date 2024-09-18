@@ -56,7 +56,7 @@ public class ShowMeYourCodeAction extends AnAction {
                         try {
                             // 调用 Ollama 服务
                             String comment=codeUtil.formatComment(selectedText);
-                            String prompt = "你是一个Java代码开发专家，请根据给定的文字描述，生成相应的代码及注释，文字如下：" + comment;
+                            String prompt = "你是一个Java代码开发专家，请根据给定的文字描述，生成相应的代码及注释，格式分三部分：1.文字描述 2.代码及注释，对应注释在代码上方 3.总结。文字如下：" + comment;
                             String result = ollamaUtil.callOllamaService("glm4", prompt);
 
                             // 更新工具窗口的 JTextArea

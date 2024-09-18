@@ -56,7 +56,7 @@ public class OptimizeCodeAction extends AnAction {
                         try {
                             // 调用 Ollama 服务
                             String code=codeUtil.formatCode(selectedText);
-                            String prompt = "你是一个Java代码开发专家，请根据给出的代码，提出相应的优化建议，代码如下：" + code;
+                            String prompt = "你是一个Java代码开发专家，请根据给出的代码，提出相应的优化建议。生成回答输出格式分为四部分，分别为1：输入的代码，2：代码的解释，3：优化后的代码，4：优化点解释。待优化代码如下：" + code;
                             String result = ollamaUtil.callOllamaService("glm4", prompt);
 
                             // 更新工具窗口的 JTextArea

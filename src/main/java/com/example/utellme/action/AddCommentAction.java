@@ -15,8 +15,6 @@ import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.wm.ToolWindow;
 import com.intellij.openapi.wm.ToolWindowManager;
 
-import okhttp3.*;
-
 import java.io.IOException;
 
 public class AddCommentAction extends AnAction {
@@ -58,18 +56,14 @@ public class AddCommentAction extends AnAction {
                         try {
                             // 调用 Ollama 服务
                             String code=codeUtil.formatCode(selectedText);
-                            String prompt = "你是一个Java代码注释专家，请根据给定的代码片段，生成相应的注释，生成注释的规则如下：忽略代码里的日志代码，生成的注释以//开头，在关键的代码片段上方生成即可，代码如下：" + code;
+                            String prompt = "你是一个Java代码注释专家，请根据给定的代码片段，添加注释。要求用中文注释解释关键代码，打印日志的代码不生成注释。方法注释生成在方法上方，代码注释生成在对应代码上方。最后分析复杂度。代码如下：" + code;
                             String result = ollamaUtil.callOllamaService("glm4", prompt);
                             // 更新工具窗口的 JTextArea
-                            ApplicationManager.getApplication().invokeLater(() -> {
-                                ResultToolWindowFactory.updateResult(result);
-                            });
+                            ApplicationManager.getApplication().invokeLater(() -> ResultToolWindowFactory.updateResult(result));
 
                         } catch (IOException e) {
                             e.printStackTrace();
-                            ApplicationManager.getApplication().invokeLater(() -> {
-                                Messages.showMessageDialog("Failed to call Ollama model!", "Error", Messages.getErrorIcon());
-                            });
+                            ApplicationManager.getApplication().invokeLater(() -> Messages.showMessageDialog("Failed to call Ollama model!", "Error", Messages.getErrorIcon()));
                         }
                     }
                 });

@@ -55,7 +55,7 @@ public class AskAnythingAction extends AnAction {
                     public void run(ProgressIndicator indicator) {
                         try {
                             // 调用 Ollama 服务
-                            String prompt = "根据提出的问题作出回答，问题如下：" + selectedText;
+                            String prompt = "根据提出的问题作出回答，以Java作为默认编程语言输出，问题如下：" + selectedText;
                             String result = ollamaUtil.callOllamaService("glm4", prompt);
                             // 更新工具窗口的 JTextArea
                             ApplicationManager.getApplication().invokeLater(() -> {
