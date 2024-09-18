@@ -24,10 +24,10 @@
     <!-- Extension points defined by the plugin.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
     <extensions defaultExtensionNs="com.intellij">
-        <toolWindow id="Utellme"
+        <toolWindow id="UTellMe"
                     factoryClass="com.example.utellme.ResultToolWindowFactory"
                     anchor="right" />
-        <toolWindow id="Askanything"
+        <toolWindow id="AskAnything"
                     factoryClass="com.example.utellme.AskWindowFactory"
                     anchor="right" />
     </extensions>
@@ -48,7 +48,7 @@
             <keyboard-shortcut keymap="$default" first-keystroke="alt O"/>
         </action>
         <action id="AskAnythingAction" class="com.example.utellme.action.AskAnythingAction"
-                text="问什么都可以" description="根据问题作出回答">
+                text="AskAnything" description="根据问题作出回答">
             <add-to-group group-id="EditorPopupMenu" anchor="first"/>
             <keyboard-shortcut keymap="$default" first-keystroke="alt A"/>
         </action>
