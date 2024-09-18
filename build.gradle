@@ -1,0 +1,44 @@
+plugins {
+    id("java")
+    id("org.jetbrains.intellij") version "1.17.4"
+}
+
+group = "com.example"
+version = "1.0-SNAPSHOT"
+
+repositories {
+    maven { url 'https://maven.aliyun.com/repository/central/'}
+    maven { url 'https://maven.aliyun.com/repository/public/' }
+    maven { url 'https://maven.aliyun.com/repository/google/' }
+    maven { url 'https://maven.aliyun.com/repository/jcenter/'}
+    maven { url 'https://maven.aliyun.com/repository/gradle-plugin'}
+}
+
+dependencies {
+    implementation 'com.squareup.okhttp3:okhttp:4.9.1'
+    implementation 'cn.hutool:hutool-all:5.8.18'
+}
+
+intellij {
+    version.set("2023.2.6")
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+    options.compilerArgs += ['-Xlint:unchecked', '-Xlint:deprecation', '-parameters']
+}
+
+patchPluginXml {
+    sinceBuild.set("231")
+    untilBuild.set("242.*")
+}
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)   }
+}
+
+jar {
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}

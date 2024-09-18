@@ -1,0 +1,57 @@
+<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
+<idea-plugin>
+    <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
+    <id>com.example.utellme</id>
+
+    <!-- Public plugin name should be written in Title Case.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
+    <name>Utellme</name>
+
+    <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
+    <vendor email="18717735973@163.com" url="https://www.yourcompany.com">tellme</vendor>
+
+    <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
+         Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
+    <description><![CDATA[
+    这是我的第一个插件，希望能帮助程序猿同学们在写代码的过程中更多的使用ai工具，此工具的功能包括代码生成，代码注释，代码优化
+  ]]></description>
+
+    <!-- Product and plugin compatibility requirements.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
+    <depends>com.intellij.modules.platform</depends>
+
+    <!-- Extension points defined by the plugin.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
+    <extensions defaultExtensionNs="com.intellij">
+        <toolWindow id="Utellme"
+                    factoryClass="com.example.utellme.ResultToolWindowFactory"
+                    anchor="right" />
+        <toolWindow id="Askanything"
+                    factoryClass="com.example.utellme.AskWindowFactory"
+                    anchor="right" />
+    </extensions>
+    <actions>
+        <action id="com.example.utellme.action.AddCommentAction" class="com.example.utellme.action.AddCommentAction"
+                text="生成注释" description="对选中的代码生成对应的注释">
+            <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+            <keyboard-shortcut keymap="$default" first-keystroke="alt U"/>
+        </action>
+        <action id="ShowMeYourCodeAction" class="com.example.utellme.action.ShowMeYourCodeAction"
+                text="生成代码" description="根据文字生成代码">
+            <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+            <keyboard-shortcut keymap="$default" first-keystroke="alt G"/>
+        </action>
+        <action id="OptimizeCodeAction" class="com.example.utellme.action.OptimizeCodeAction"
+                text="优化代码" description="根据给出的代码给出相应的优化建议">
+            <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+            <keyboard-shortcut keymap="$default" first-keystroke="alt O"/>
+        </action>
+        <action id="AskAnythingAction" class="com.example.utellme.action.AskAnythingAction"
+                text="问什么都可以" description="根据问题作出回答">
+            <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+            <keyboard-shortcut keymap="$default" first-keystroke="alt A"/>
+        </action>
+    </actions>
+
+</idea-plugin>
