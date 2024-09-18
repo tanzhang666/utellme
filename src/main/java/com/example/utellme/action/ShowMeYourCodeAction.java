@@ -44,7 +44,7 @@ public class ShowMeYourCodeAction extends AnAction {
             Project project = event.getProject();
 
             // 获取 ToolWindow 实例
-            ToolWindow toolWindow = ToolWindowManager.getInstance(project).getToolWindow("Utellme");
+            ToolWindow toolWindow = ToolWindowManager.getInstance(project).getToolWindow("UTellMe");
 
             if (toolWindow != null) {
                 toolWindow.show(() -> {});
